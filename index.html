@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feliz aniversário, Tainá!</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffdfe8;--bg2:#ffb3cb;--red:#e4202c;--ink:#16121a;--paper:#fffaf4;--text:#3a2a33;--pink:#ff6f9c;--bodyc:#3a2a33;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14152e;--bg2:#3a1c4a;--paper:#fff3ec;--bodyc:#fff}}
+:root[data-theme="dark"]{--bg:#14152e;--bg2:#3a1c4a;--paper:#fff3ec;--bodyc:#fff}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(circle at 50% 35%,var(--bg2),var(--bg));font-family:"Baloo 2",system-ui,sans-serif;color:var(--bodyc);
+ display:grid;place-items:center;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.stage{display:flex;flex-direction:column;align-items:center;gap:34px}
+.scene{--w:min(62vw,300px);width:var(--w);height:calc(var(--w)*1.4);position:relative;transition:transform 1s cubic-bezier(.5,0,.2,1)}
+.scene.open{transform:translateX(calc(var(--w)*.22))}
+.card{position:absolute;inset:0;perspective:1300px;cursor:pointer;animation:bob 3.4s ease-in-out infinite}
+.scene.open .card{animation:none}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-1.2deg)}}
+.pg{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;
+ transition:transform 1.1s cubic-bezier(.6,0,.2,1),z-index 0s .5s}
+.pg.flip{transform:rotateY(-118deg)}
+.face,.bk{position:absolute;inset:0;border-radius:6px 16px 16px 6px;-webkit-backface-visibility:hidden;backface-visibility:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28);overflow:hidden}
+.face{color:var(--text);background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9%}
+.bk{transform:rotateY(180deg);background:radial-gradient(circle at 30% 30%,#ffd0de 0 8%,transparent 9%),radial-gradient(circle at 70% 70%,#ffd0de 0 10%,transparent 11%),#f7a8bf}
+h2{font-weight:800;font-size:clamp(26px,8vw,36px);line-height:1;margin:8px 0;color:var(--red)}
+p{margin:6px 0 0;font-size:clamp(14px,4vw,17px);line-height:1.35;max-width:22ch}
+.sign{font-family:Caveat,cursive;font-size:clamp(24px,7vw,30px);color:var(--ink);margin-top:10px}
+/* capa */
+.cover{background:
+ radial-gradient(circle at 22% 22%,var(--ink) 0 9%,transparent 9.5%),radial-gradient(circle at 78% 26%,var(--ink) 0 8%,transparent 8.5%),
+ radial-gradient(circle at 18% 62%,var(--ink) 0 7%,transparent 7.5%),radial-gradient(circle at 80% 66%,var(--ink) 0 10%,transparent 10.5%),
+ radial-gradient(circle at 30% 88%,var(--ink) 0 6%,transparent 6.5%),radial-gradient(circle at 70% 90%,var(--ink) 0 6%,transparent 6.5%),var(--red)}
+.cover::before{content:"";position:absolute;left:calc(50% - 2px);top:0;bottom:0;width:4px;background:var(--ink)}
+.cover::after{content:"";position:absolute;inset:-20% auto -20% -60%;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+ transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite}
+@keyframes shine{to{left:130%}}
+.badge{position:relative;z-index:1;width:68%;aspect-ratio:1;border-radius:50%;background:var(--paper);border:4px solid var(--ink);display:grid;place-items:center;color:var(--ink);animation:beat 2s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.06)}}
+.badge b{display:block;font-weight:800;font-size:clamp(24px,7.5vw,32px);color:var(--red);line-height:1}
+.badge small{display:block;font-size:clamp(11px,3vw,13px);margin-top:4px}
+.bug{width:48px;height:48px;animation:wig 1.6s ease-in-out infinite}
+@keyframes wig{50%{transform:rotate(12deg) translateY(-4px)}}
+.orbit{position:absolute;inset:-34px;animation:spin 9s linear infinite;pointer-events:none;transition:opacity .5s}
+.orbit svg{position:absolute;left:calc(50% - 16px);top:-6px;width:32px;height:32px}
+.scene.open .orbit{opacity:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* entradas ao mostrar a página */
+.pop{opacity:0}
+.show .pop{animation:pop .7s cubic-bezier(.3,1.6,.5,1) var(--d,0s) both}
+@keyframes pop{from{opacity:0;transform:scale(.2) translateY(20px)}to{opacity:1;transform:none}}
+.ltr{display:inline-block;opacity:0}
+.show .ltr{animation:pop .6s cubic-bezier(.3,1.6,.5,1) calc(.5s + var(--i)*.06s) both}
+.shell{width:62%}
+.sp{opacity:0;transform-origin:center;transform-box:fill-box}
+.show .sp{animation:pop .5s cubic-bezier(.3,1.6,.5,1) var(--d) both}
+.show .shell{animation:wig 2.4s ease-in-out 1.5s infinite}
+.star{position:absolute;width:22px;height:22px;fill:#ffd166;animation:tw 1.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes tw{0%,100%{transform:scale(.2) rotate(0);opacity:.2}50%{transform:scale(1) rotate(90deg);opacity:1}}
+.cakebtn{all:unset;cursor:pointer;display:block;width:68%}
+.cakebtn:focus-visible{outline:3px solid var(--red);border-radius:12px}
+.fl{transform-origin:50% 100%;transform-box:fill-box;animation:fk .35s ease-in-out infinite alternate}
+@keyframes fk{from{transform:scale(1,1.15) rotate(-5deg)}to{transform:scale(.85,.9) rotate(5deg)}}
+.out .fl{display:none}.out .cakebtn{animation:beat .5s 2}
+.t2{display:none}.out .t1{display:none}.out .t2{display:block}
+.glow{animation:glow 1.8s ease-in-out infinite}
+@keyframes glow{50%{text-shadow:0 0 14px #ff6f9c;transform:scale(1.05)}}
+/* partículas */
+.fx{position:fixed;pointer-events:none;z-index:9}
+.conf{top:-20px;border-radius:50%;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(540deg)}}
+.rise{bottom:-40px;animation:rise linear forwards}
+@keyframes rise{to{transform:translateY(-115vh) translateX(var(--dx))}}
+.rise svg{width:100%;height:100%}
+.heart{color:var(--pink);font-size:22px}
+.ctl{display:flex;align-items:center;gap:18px}
+.ctl button{all:unset;cursor:pointer;width:48px;height:48px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800;box-shadow:0 6px 14px rgba(0,0,0,.25)}
+.ctl button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.ctl button:active{transform:scale(.9)}
+.dots{display:flex;gap:7px}.dots i{width:9px;height:9px;border-radius:50%;background:currentColor;opacity:.3;transition:.3s}.dots i.on{opacity:1;background:var(--red);transform:scale(1.4)}
+.hint{font-size:16px;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="lb" viewBox="0 0 100 100">
+  <path d="M38 14 30 4M62 14 70 4" stroke="#16121a" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <circle cx="50" cy="26" r="15" fill="#16121a"/>
+  <ellipse cx="50" cy="62" rx="36" ry="35" fill="#e4202c" stroke="#16121a" stroke-width="4"/>
+  <path d="M50 28v69" stroke="#16121a" stroke-width="4"/>
+  <g fill="#16121a"><circle cx="30" cy="52" r="7"/><circle cx="70" cy="52" r="7"/><circle cx="27" cy="76" r="6"/><circle cx="73" cy="76" r="6"/><circle cx="40" cy="92" r="4"/><circle cx="60" cy="92" r="4"/></g>
+  <circle cx="44" cy="24" r="3" fill="#fff"/><circle cx="56" cy="24" r="3" fill="#fff"/>
+ </symbol>
+ <symbol id="st" viewBox="0 0 20 20"><path d="M10 0c1 6 4 9 10 10-6 1-9 4-10 10-1-6-4-9-10-10C6 9 9 6 10 0z"/></symbol>
+</svg>
+
+<div class="stage">
+ <div class="scene" id="scene">
+  <div class="orbit"><svg><use href="#lb"/></svg></div>
+  <div class="card" id="card">
+
+   <div class="pg"><div class="face cover">
+     <div class="badge"><div><svg class="bug"><use href="#lb"/></svg><b>Para Tainá</b><small>Feliz aniversário!</small></div></div>
+    </div><div class="bk"></div></div>
+
+   <div class="pg"><div class="face">
+     <svg class="bug pop" style="width:76px;height:76px"><use href="#lb"/></svg>
+     <h2 id="t1" data-t="Parabéns, Tainá!"></h2>
+     <p class="pop" style="--d:1.3s">Hoje o dia é todo seu. Prepare-se: tem surpresa nas próximas páginas.</p>
+    </div><div class="bk"></div></div>
+
+   <div class="pg"><div class="face">
+     <svg class="star" style="left:12%;top:12%;--d:0s"><use href="#st"/></svg><svg class="star" style="right:12%;top:18%;--d:.5s"><use href="#st"/></svg>
+     <svg class="star" style="left:16%;bottom:14%;--d:1s"><use href="#st"/></svg><svg class="star" style="right:14%;bottom:12%;--d:.3s"><use href="#st"/></svg>
+     <svg class="shell" viewBox="0 0 100 100"><ellipse cx="50" cy="52" rx="44" ry="42" fill="#e4202c" stroke="#16121a" stroke-width="4"/><path d="M50 10v84" stroke="#16121a" stroke-width="4"/>
+      <g fill="#16121a"><circle class="sp" style="--d:.5s" cx="28" cy="34" r="8"/><circle class="sp" style="--d:.7s" cx="72" cy="34" r="8"/><circle class="sp" style="--d:.9s" cx="24" cy="62" r="7"/><circle class="sp" style="--d:1.1s" cx="76" cy="62" r="7"/><circle class="sp" style="--d:1.3s" cx="38" cy="80" r="5"/><circle class="sp" style="--d:1.5s" cx="62" cy="80" r="5"/></g></svg>
+     <h2 class="pop" style="--d:1.7s">Amuleto da Sorte</h2>
+     <p class="pop" style="--d:1.9s">Que a sorte te acompanhe o ano inteiro, em cada bolinha preta.</p>
+    </div><div class="bk"></div></div>
+
+   <div class="pg" id="cakepg"><div class="face">
+     <h2 class="pop t1" style="--d:.3s">Faça um pedido!</h2><h2 class="t2">Pedido feito!</h2>
+     <button class="cakebtn pop" id="cake" style="--d:.6s" aria-label="Soprar as velas">
+      <svg viewBox="0 0 200 190"><ellipse cx="100" cy="172" rx="90" ry="12" fill="#d9c7c0"/>
+       <rect x="22" y="112" width="156" height="56" rx="10" fill="#ff6f9c"/><rect x="48" y="72" width="104" height="44" rx="10" fill="#fff0e6" stroke="#16121a" stroke-width="3"/>
+       <path d="M48 90q13 14 26 0t26 0 26 0 26 0" fill="none" stroke="#e4202c" stroke-width="6" stroke-linecap="round"/>
+       <g fill="#16121a"><circle cx="46" cy="140" r="6"/><circle cx="100" cy="146" r="6"/><circle cx="154" cy="140" r="6"/></g>
+       <g fill="#ffd166"><rect x="70" y="46" width="8" height="28" rx="2"/><rect x="96" y="46" width="8" height="28" rx="2"/><rect x="122" y="46" width="8" height="28" rx="2"/></g>
+       <g fill="#ff9d2e"><path class="fl" d="M74 24c6 8 6 14 0 20-6-6-6-12 0-20z"/><path class="fl" style="animation-delay:.1s" d="M100 24c6 8 6 14 0 20-6-6-6-12 0-20z"/><path class="fl" style="animation-delay:.2s" d="M126 24c6 8 6 14 0 20-6-6-6-12 0-20z"/></g></svg>
+     </button>
+     <p class="t1">Toque nas velas para soprar.</p><p class="t2">Agora é só esperar a sorte chegar.</p>
+    </div><div class="bk"></div></div>
+
+   <div class="pg"><div class="face">
+     <h2 class="glow">Nunca se esqueça</h2>
+     <p class="pop" style="--d:.5s">Você é uma heroína de verdade e merece toda a magia do mundo.</p>
+     <svg class="bug pop" style="--d:1s;width:64px;height:64px"><use href="#lb"/></svg>
+     <div class="sign pop" style="--d:1.3s">Com muito carinho, seu amigo</div>
+    </div><div class="bk"></div></div>
+
+  </div>
+ </div>
+ <div class="ctl"><button id="prev" aria-label="Voltar página">&lsaquo;</button><div class="dots" id="dots"></div><button id="next" aria-label="Próxima página">&rsaquo;</button></div>
+ <div class="hint" id="hint">Toque no cartão para abrir</div>
+</div>
+
+<script>
+(function(){
+ var scene=document.getElementById('scene'),card=document.getElementById('card'),pgs=[].slice.call(card.querySelectorAll('.pg')),
+  N=pgs.length,idx=0,dots=document.getElementById('dots'),hint=document.getElementById('hint'),hearts=null,
+  calm=false,cols=['#e4202c','#16121a','#ff6f9c','#ffd166','#ffffff','#7fd6ff'];
+ var t1=document.getElementById('t1');
+ t1.setAttribute('aria-label',t1.dataset.t);
+ t1.innerHTML=t1.dataset.t.split('').map(function(c,i){return c===' '?' ':'<span class="ltr" aria-hidden="true" style="--i:'+i+'">'+c+'</span>'}).join('');
+ pgs.forEach(function(){dots.appendChild(document.createElement('i'))});
+ function fx(cls,css,html,ms){var s=document.createElement('span');s.className='fx '+cls;s.style.cssText=css;if(html)s.innerHTML=html;document.body.appendChild(s);setTimeout(function(){s.remove()},ms)}
+ function confetti(n){if(calm)return;for(var i=0;i<n;i++){var z=6+Math.random()*8;
+  fx('conf','left:'+Math.random()*100+'vw;width:'+z+'px;height:'+z+'px;background:'+cols[i%cols.length]+';animation-duration:'+(2.4+Math.random()*2.6)+'s;animation-delay:'+Math.random()*.8+'s',0,6500)}}
+ function floater(html,cls,size,dur){if(calm)return;fx('rise '+cls,'left:'+Math.random()*95+'vw;width:'+size+'px;height:'+size+'px;--dx:'+(Math.random()*80-40)+'px;animation-duration:'+dur+'s;opacity:.85',html,dur*1000)}
+ setInterval(function(){floater('<svg><use href="#lb"/></svg>','',18+Math.random()*16,9+Math.random()*5)},1800);
+ function render(){
+  pgs.forEach(function(p,i){p.classList.toggle('flip',i<idx);p.classList.toggle('show',i===idx);p.style.zIndex=i<idx?i+1:N-i});
+  scene.classList.toggle('open',idx>0);
+  [].forEach.call(dots.children,function(d,i){d.classList.toggle('on',i===idx)});
+  hint.style.visibility=idx===0?'visible':'hidden';
+  clearInterval(hearts);hearts=null;
+  if(idx===1)setTimeout(function(){confetti(40)},900);
+  if(idx===N-1){confetti(70);hearts=setInterval(function(){floater('<span class="heart">&hearts;</span>','',24,5+Math.random()*3)},350)}
+ }
+ function go(d){idx=d>0?(idx+1)%N:Math.max(0,idx-1);if(d>0&&idx===0)document.getElementById('cakepg').classList.remove('out');render()}
+ card.addEventListener('click',function(){go(1)});
+ document.getElementById('next').addEventListener('click',function(){go(1)});
+ document.getElementById('prev').addEventListener('click',function(){go(-1)});
+ document.getElementById('cake').addEventListener('click',function(e){e.stopPropagation();var pg=document.getElementById('cakepg');
+  if(!pg.classList.contains('out')){pg.classList.add('out');confetti(90)}});
+ render();
+})();
+</script>
+</body>
+</html>
